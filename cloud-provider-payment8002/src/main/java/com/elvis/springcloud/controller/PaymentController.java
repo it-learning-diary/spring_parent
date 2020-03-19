@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
     @Autowired
     private PaymentService paymentService;
+
     @Value("${server.port}")
     private String port;
     // 添加
@@ -29,7 +30,7 @@ public class PaymentController {
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id){
         Payment paymentById = paymentService.getPaymentById(id);
         if(null != paymentById){
-            return new CommonResult<>("0","success:"+port,paymentById);
+            return new CommonResult<>("0","success"+port,paymentById);
         }
         return new CommonResult<>("0","fail");
     }

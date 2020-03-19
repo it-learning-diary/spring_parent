@@ -1,0 +1,16 @@
+server:
+  port: 8006
+
+spring:
+  application:
+    name: cloud-ribbon-demo
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registy: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    prefer-ip-address: true # 鼠标移动上去显示ip地址
+    instance-id: consumer8006 # 服务的名称
