@@ -17,6 +17,11 @@
         <module>cloud-provider-consul-payment8003</module>
         <module>cloud-consumer-consul-order80</module>
         <module>cloud-ribbon-demo</module>
+        <module>spring-cloud-consumer-feign-order80</module>
+        <module>cloud-provider-hystrix-payment8003</module>
+        <module>cloud-consumer-hystrix-order80</module>
+        <module>cloud-payment-hystix-breaker8004</module>
+        <module>spring-easyexcel-demo</module>
     </modules>
     <packaging>pom</packaging>
     <!--统一管理jar包版本-->

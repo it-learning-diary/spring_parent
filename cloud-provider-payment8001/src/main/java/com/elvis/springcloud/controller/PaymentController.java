@@ -38,4 +38,14 @@ public class PaymentController {
     public String testCustomer(){
         return port;
     }
+
+    @RequestMapping("/payment/test/ribbon/timeout")
+    public String testCustomerTimeout(){
+        try{
+            Thread.sleep(3000);
+        }catch (Exception e){
+            log.info(e.getLocalizedMessage());
+        }
+        return port;
+    }
 }

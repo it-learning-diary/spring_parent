@@ -41,6 +41,7 @@ public class ConsumerController {
         ServiceInstance serverInstance = customIRule.getServerInstance("cloud-payment-service");
         if(null != serverInstance){
             String result = restTemplate.getForObject(serverInstance.getUri()+"/payment/test/ribbon", String.class);
+            System.out.println("本次调用服务的端口:"+result);
             return result;
         }
         return "测试失败";

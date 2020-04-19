@@ -8,7 +8,8 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-@RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration = IRuleImpl.class)
+//@RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration = IRuleImpl.class)
+@RibbonClient // 启动负载均衡,使用默认的轮询算法
 public class ConsumerOrder80 {
     public static void main(String[] args) {
         SpringApplication.run(ConsumerOrder80.class,args);

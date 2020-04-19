@@ -1,0 +1,19 @@
+server:
+  port: 8009
+spring:
+  application:
+    name: cloud-consumer-hystrix-order80
+
+eureka:
+  client:
+    register-with-eureka: true # 是否注册到eureka中
+    fetch-registry: true # 是否获取注册到eureka的服务信息
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/ # eureka注册的地址
+  instance:
+    prefer-ip-address: true # 鼠标移动上去显示ip地址
+    instance-id: payment8003 # 服务的名称
+
+#feign:
+#  hystrix:
+#    enabled: true # 开启feign的hystrix功能

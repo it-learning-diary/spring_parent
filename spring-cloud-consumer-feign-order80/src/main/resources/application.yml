@@ -1,0 +1,17 @@
+server:
+  port: 8010
+# 注册到eureka服务
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registy: true # 是否获取注册到eureka的服务信息
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+ribbon:
+  ReadTimeout: 5000 # 表示与服务提供放进行链接时的最大时间
+  ConnectionTimeout: 5000 # 表示获取服务提供放资源的的最大时间
+
+logging:
+  level:
+    com.elvis.springcloud.feign.OrderFeign: debug #日志监听的位置

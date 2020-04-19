@@ -9,7 +9,8 @@ import ribbonconfig.IRuleImpl;
 
 @SpringBootApplication
 @EnableEurekaClient
-@RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration = IRuleImpl.class)
+// 此处的name属性的值就是我们消费者需要访问服务的服务名称(即配置在:application配置文件中的:application.name的值)
+@RibbonClient(name = "CLOUD-PAYMENT-SERVICE")
 @EnableDiscoveryClient
 public class ConsumerOrder8006 {
     public static void main(String[] args) {

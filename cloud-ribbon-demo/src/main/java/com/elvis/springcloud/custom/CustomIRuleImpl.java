@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class CustomIRuleImpl implements CustomIRule
 {
+    // 该注解是用来获取注册在注册中心的消费者服务的信息,它要起作用,还需要在主启动类表明@EnableDiscoveryClient注解
     @Autowired
     private DiscoveryClient discoveryClient;
 
@@ -22,7 +23,7 @@ public class CustomIRuleImpl implements CustomIRule
         serviceIndex =  new AtomicInteger(0);
     }
 
-    // 获取服务的集群列表
+    // 获取特定服务的集群列表
     @Override
     public List<ServiceInstance> getInstances(String serviceId) {
         List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
@@ -50,7 +51,7 @@ public class CustomIRuleImpl implements CustomIRule
         return chooseServer;
     }
 
-    // 获取访问的次数
+    // 获取客户端访问的次数
     public final  Integer getAndIncrement(){
         int current;
         int next;
@@ -59,6 +60,8 @@ public class CustomIRuleImpl implements CustomIRule
             // 注意: 每次重启服务后,访问次数都会从0开始
             current =  serviceIndex.get();
             next = current >= Integer.MAX_VALUE ? 0 : (current+1);
+            // 通过自旋锁和线程安全原子类保证线程安全(这个知识如果有需要会在后面的课程专门开启一系列的文章进行解读)
+            // 每次都进行比较: 看当前的值是否等于预期的值,如果相等,则设置为next，并返回next，不然就一直自旋,直到拿到符合的值位置
         }while (!serviceIndex.compareAndSet(current,next));
         return  next;
     }
